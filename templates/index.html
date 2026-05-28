@@ -1,18 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Router Flyer</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <h1>Welcome to the Home Page</h1>
-    {% if session.get('user_id') %}
-        <a href="{{ url_for('logout') }}">Logout</a>
-    {% else %}
-        <a href="{{ url_for('login') }}">Login</a> | 
-        <a href="{{ url_for('register') }}">Register</a> |
-        <a href="{{ url_for('forgot_password') }}">Forgot Password</a>
-    {% endif %}
+  <main class="game-shell">
+    <section class="hero-panel">
+      <div>
+        <p class="eyebrow">Portal cautivo demo</p>
+        <h1>Router Flyer</h1>
+        <p class="lead">Esquiva antenas, suma señal y, si llegas a la meta, entras al portal cautivo de demostración.</p>
+      </div>
+      <div class="hud">
+        <div><span>Puntos</span><strong id="score">0</strong></div>
+        <div><span>Meta</span><strong id="target">8</strong></div>
+      </div>
+    </section>
+
+    <section class="game-card">
+      <canvas id="gameCanvas" width="420" height="640" aria-label="Juego Router Flyer"></canvas>
+      <div class="overlay" id="messageOverlay">
+        <div class="overlay-card">
+          <h2 id="messageTitle">Pulsa espacio o toca para comenzar</h2>
+          <p id="messageText">Mantén al router en el aire y cruza las antenas.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    window.GAME_CONFIG = {
+      winScore: 8,
+      portalUrl: "{{ url_for('portal') }}"
+    };
+  </script>
+  <script src="{{ url_for('static', filename='js/game.js') }}"></script>
 </body>
 </html>

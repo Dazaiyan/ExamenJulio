@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal cautivo</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <main class="portal-shell">
+    <section class="portal-card">
+      <p class="eyebrow">Acceso concedido</p>
+      <h1>Ingresa tus credenciales</h1>
+      <p>Este formulario es solo de demostración. No valida los datos y, al enviarlo, te redirige a Google.</p>
+
+      <form class="portal-form" id="portalForm">
+        <label class="field">
+          <span>Cédula</span>
+          <input type="text" name="cedula" autocomplete="off" placeholder="Ingresa tu cédula">
+        </label>
+
+        <label class="field">
+          <span>Contraseña</span>
+          <input type="password" name="password" autocomplete="off" placeholder="Ingresa tu contraseña">
+        </label>
+
+        <button class="button primary button-full" type="submit">Acceder</button>
+      </form>
+
+      <div class="portal-actions">
+        <a class="button ghost" href="/">Volver al juego</a>
+      </div>
+    </section>
+  </main>
+  <script>
+    document.getElementById("portalForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+      window.location.href = "https://www.google.com";
+    });
+  </script>
+</body>
+</html>
